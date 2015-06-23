@@ -13,45 +13,18 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'path',
+      message: 'Would you like to path to sass?',
+      default: 'assets/styles'
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
       // To access props later use this.props.someOption;
+      this.config.set('path', props.path);
 
       done();
     }.bind(this));
-  },
-
-  writing: {
-    app: function () {
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
-      );
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
-    },
-
-    projectfiles: function () {
-      this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath('.editorconfig')
-      );
-      this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
-      );
-    }
-  },
-
-  install: function () {
-    this.installDependencies();
   }
 });
