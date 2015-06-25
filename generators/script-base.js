@@ -1,24 +1,20 @@
 'use strict';
-var yeoman = require('yeoman-generator');
+var util = require('util');
 var path = require('path');
+var yeoman = require('yeoman-generator');
 
-var Generator = module.exports = function Generator() {
-  yeoman.generators.NamedBase.apply(this, arguments);
-
-  this.sourceRoot(path.join(__dirname, './templates'));
-
-  this.writing:
+module.exports = yeoman.generators.NamedBase.extend({
   initializing: function () {
-    this.sourceRoot(path.join(__dirname, '../templates'));
-    this.log('generate ' + this.name + ' component file.');
-    this.log('@import "' + path.join(this.config.get('path'), '/object/component/' + this.name) + '";');
+    this.sourceRoot(path.join(__dirname, './templates'));
+    this.log('generate ' + this.name + ' ' + this.typename() + ' file.');
+    this.log('@import "' + path.join(this.config.get('path'), this.typepath(), this.name) + '";');
   },
 
   writing: function () {
-    this.fs.copy(
-      this.templatePath('templates.scss')
-      this.destinationPath(path.join(this.config.get('path'), '/object/component/_' + this.name + '.scss')),
+    this.fs.copyTpl(
+      this.templatePath('templates.scss'),
+      this.destinationPath(path.join(this.config.get('path'), this.typepath(), '_' + this.name + '.scss')),
       this
     );
   }
-};
+});
