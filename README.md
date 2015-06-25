@@ -33,6 +33,14 @@ etc...
 * project: `yo flocss:project articles` 
 * utility: `yo flocss:utility text` 
 
+
+To delete component file, run:
+
+```bash
+yo flocss:component button --delete # delete "assets/styles/object/component/_button.scss"
+```
+
+
 ## License
 
 MIT
