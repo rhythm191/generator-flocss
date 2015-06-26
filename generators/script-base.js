@@ -2,6 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
 
 module.exports = yeoman.generators.NamedBase.extend({
   initializing: function () {
@@ -21,6 +22,9 @@ module.exports = yeoman.generators.NamedBase.extend({
   writing: function () {
     if (!!this.options.delete) {
       this.fs.delete(path.join(this.config.get('path'), this.typepath(), '_' + this.name + '.scss'));
+      this.fs.commit(function(e) {
+        this.log('   ' + chalk.red('delete') + ' ' + path.join(this.config.get('path'), this.typepath(), '_' + this.name + '.scss'));
+      }.bind(this));
     } else {
       this.fs.copyTpl(
         this.templatePath('templates.scss'),
