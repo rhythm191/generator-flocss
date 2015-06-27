@@ -41,6 +41,14 @@ yo flocss:component button --delete # delete "assets/styles/object/component/_bu
 ```
 
 
+## Generate FLOCSS imoprt files
+
+To generate import file, fun:
+
+```bash
+yo flocss:import # create import file "assets/styles/_import.scss"
+```
+
 ## License
 
 MIT

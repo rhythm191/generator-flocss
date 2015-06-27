@@ -8,17 +8,13 @@ var os = require('os');
 describe('flocss:app', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
-      .withOptions({ skipInstall: true })
-      .withPrompts({ someOption: true })
+      .withPrompts({ path: 'assets/styles' })
       .on('end', done);
   });
 
   it('creates files', function () {
     assert.file([
-      'bower.json',
-      'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      '.yo-rc.json'
     ]);
   });
 });

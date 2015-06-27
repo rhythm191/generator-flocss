@@ -1,0 +1,16 @@
+@charset "UTF-8";
+// foundation　<% fileList.foundation.forEach(function(filename){ %>
+<%= "@import '" + base_path + "/foundation/" + filename + "';"  %><% }); %>
+
+// layout　<% fileList.layout.forEach(function(filename){ %>
+<%= "@import '" + base_path + "/layout/" + filename + "';"  %><% }); %>
+
+// component <% fileList.component.forEach(function(filename){ %>
+<%= "@import '" + base_path + "/object/component/" + filename + "';"  %><% }); %>
+
+// project <% fileList.project.forEach(function(filename){ %>
+<%= "@import '" + base_path + "/object/project/" + filename + "';"  %><% }); %>
+
+// utility <% fileList.utility.forEach(function(filename){ %>
+<%= "@import '" + base_path + "/object/utility/" + filename + "';"  %><% }); %>
+

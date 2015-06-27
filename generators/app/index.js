@@ -2,6 +2,8 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var mkdirp = require('mkdirp');
+var path = require('path');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -26,5 +28,14 @@ module.exports = yeoman.generators.Base.extend({
 
       done();
     }.bind(this));
+  },
+
+  writing: function() {
+    mkdirp(path.join(this.config.get('path'), 'foundation'));
+    mkdirp(path.join(this.config.get('path'), 'foundation'));
+    mkdirp(path.join(this.config.get('path'), 'layout'));
+    mkdirp(path.join(this.config.get('path'), 'object/component'));
+    mkdirp(path.join(this.config.get('path'), 'object/project'));
+    mkdirp(path.join(this.config.get('path'), 'object/utility'));
   }
 });
