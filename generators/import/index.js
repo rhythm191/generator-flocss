@@ -33,7 +33,7 @@ module.exports = yeoman.generators.Base.extend({
 function getScssFileList(dir_path) {
   var results = [];
 
-  if(!fs.existsSync(dir_path)) {
+  if (!fs.existsSync(dir_path)) {
     return results;
   }
 
@@ -41,7 +41,11 @@ function getScssFileList(dir_path) {
   files.filter(function(file) {
     return fs.statSync(path.join(dir_path, file)).isFile() && /.*\.scss$/.test(file); //絞り込み
   }).forEach(function (file) {
-    results.push(path.basename(file, '.scss'));
+    var filename = path.basename(file, '.scss');
+    if (/^_.*$/.test(filename)) {
+      filename = filename.substring(1);
+    }
+    results.push(filename);
   });
 
   return results;
